@@ -1,72 +1,108 @@
-
-*,
-::before,
-::after{
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-label{
-  font-size: 20px;
-}
-
-html,
-body{
-  height: 100%;
-  width: 100%;
-}
-
-body{
+/* General Styles */
+.container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f4f7fc;
+  font-family: 'Arial', sans-serif;
 }
 
-.container{
-  background-color: #FFF;
-  padding: 32px 48px;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
-}
-
-.container > h1{
+h1 {
+  font-size: 2rem;
+  color: #333;
   margin-bottom: 20px;
 }
 
-.container > form{
+/* Form Styling */
+form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-.container div{
-  display: flex;
-  flex-direction: column;
-}
-
-.container input{
   width: 100%;
-  font-size: 20px;
-  padding: 10px;
-  border: none;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+form div {
+  margin-bottom: 15px;
+}
+
+label {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 5px;
+  display: block;
+}
+
+input {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 5px;
   outline: none;
-  border-bottom: 1px solid black;
 }
 
-.container input::placeholder{
-  font-size: 12px;
-  font-style: italic;
+input:focus {
+  border-color: #5fa8d3;
+  box-shadow: 0 0 5px rgba(95, 168, 211, 0.5);
 }
 
-button{
-  background-color: purple;
-  border: none;
-  font-size: 20px;
+/* Submit Button Styling */
+button {
+  padding: 12px;
+  background-color: #5fa8d3;
   color: white;
-  border-radius: 5px;
-  padding: 10px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
-  margin: 10px 0;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #4f90b1;
+}
+
+/* Signup Link */
+span {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+span a {
+  color: #5fa8d3;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+span a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .container {
+      padding: 20px;
+  }
+
+  form {
+      width: 100%;
+      padding: 15px;
+  }
+
+  h1 {
+      font-size: 1.6rem;
+  }
+
+  button {
+      font-size: 1rem;
+  }
 }

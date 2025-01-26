@@ -5,23 +5,28 @@ import Signup from './pages/Signup';
 import Home from './pages/Home';
 import { useState } from 'react';
 import RefrshHandler from './RefrshHandler';
+import Header from './components/Layout/Header';
+import HomePage from './pages/HomePage';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const PrivateRoute = ({ element }) => {
-    return isAuthenticated ? element : <Navigate to="/login" />
+    return isAuthenticated ? element : <Navigate to="/Home" />
   }
 
   return (
     <div className="App">
       <RefrshHandler setIsAuthenticated={setIsAuthenticated} />
+      
       <Routes>
-        <Route path='/' element={<Navigate to="/login" />} />
+      <Route path='/' element={<HomePage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
+        <Route path='/header' element={<Header />} />
         <Route path='/home' element={<PrivateRoute element={<Home />} />} />
       </Routes>
+      
     </div>
   );
 }
