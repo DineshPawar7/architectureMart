@@ -80,11 +80,14 @@
   }
   
   .login-button {
-    background-color: rgb(233, 247, 201);
+    background-color: #481E14;
     border-radius: 20px;
     padding: 5px 15px;
     border: none;
     cursor: pointer;
+  }
+  .login-button:hover {
+    background-color: #f1da66;
   }
   
   /* Adjust padding to align everything in one line */

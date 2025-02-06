@@ -1,5 +1,4 @@
 import React from "react";
-import Layout from "./../components/Layout/Layout";
 import Aboutphoto from '../assets/about-banner.png';
 import '../components/style/HomePage.css';
 import Homephoto from '../assets/home-photo.png';
@@ -23,7 +22,7 @@ const HomePage = () => {
 
 
   return (
-    <Layout title={"Homepage"}>
+    
       <div id="homepage">
     <div className="homepage-container">
       <div className="left-section">
@@ -130,7 +129,6 @@ const HomePage = () => {
 
     
     </div>
-    </Layout >
     
   );
 };

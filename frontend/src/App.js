@@ -7,6 +7,7 @@ import { useState } from 'react';
 import RefrshHandler from './RefrshHandler';
 import Header from './components/Layout/Header';
 import HomePage from './pages/HomePage';
+import Pricing from './pages/Pricing';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -17,16 +18,19 @@ function App() {
 
   return (
     <div className="App">
+      {/* Display Header on every page */}
+      <Header />
+      
       <RefrshHandler setIsAuthenticated={setIsAuthenticated} />
       
       <Routes>
-      <Route path='/' element={<HomePage />} />
+        <Route path='/' element={<HomePage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
-        <Route path='/header' element={<Header />} />
+        <Route path='/pricing' element={<Pricing />} />
+        {/* Private route rendering */}
         <Route path='/home' element={<PrivateRoute element={<Home />} />} />
       </Routes>
-      
     </div>
   );
 }

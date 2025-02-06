@@ -106,3 +106,90 @@ span a:hover {
       font-size: 1rem;
   }
 }
+
+
+
+
+
+
+
+
+
+/* Pricing */
+
+.pricing-section {
+  text-align: center;
+  padding: 2rem;
+  background-color: #ffffff;
+}
+
+.pricing-heading {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.pricing-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.pricing-card {
+  background: rgb(243, 255, 243);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  width: 300px;
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-10px);
+}
+
+.pricing-plan-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.pricing-price {
+  font-size: 2rem;
+  color: #ff5733;
+  margin: 1rem 0;
+}
+
+.pricing-price span {
+  font-size: 1rem;
+  color: #777;
+}
+
+.pricing-features {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.pricing-features li {
+  margin-bottom: 0.5rem;
+  color: #444;
+}
+
+.pricing-btn {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  background-color: #ff5733;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pricing-btn:hover {
+  background-color: #e04e2e;
+}

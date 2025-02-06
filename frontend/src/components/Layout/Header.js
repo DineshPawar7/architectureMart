@@ -21,9 +21,9 @@ const Header = () => {
         <nav className="nav-menu">
           <ul>
             <li>
-              <NavLink to="/homepage" exact>
+              <Link to="/">
                 Home
-              </NavLink>
+              </Link>
             </li>
             <li>
               <NavLink to="/category">
