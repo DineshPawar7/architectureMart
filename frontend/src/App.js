@@ -8,6 +8,7 @@ import RefrshHandler from './RefrshHandler';
 import Header from './components/Layout/Header';
 import HomePage from './pages/HomePage';
 import Pricing from './pages/Pricing';
+import Footer from './components/Layout/Footer';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -31,6 +32,8 @@ function App() {
         {/* Private route rendering */}
         <Route path='/home' element={<PrivateRoute element={<Home />} />} />
       </Routes>
+
+      <Footer />
     </div>
   );
 }

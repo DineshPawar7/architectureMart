@@ -17,6 +17,10 @@ html, body {
     flex-grow: 1;
 }
 
+.footer-text-center {
+    color: white;
+}
+
 /* Footer Styling */
 .footer {
     background-color: #333;

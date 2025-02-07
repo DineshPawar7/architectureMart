@@ -4,6 +4,8 @@ import '../components/style/HomePage.css';
 import Homephoto from '../assets/home-photo.png';
 import { motion } from 'framer-motion';
 import { FaDollarSign, FaHeadset, FaCogs } from 'react-icons/fa';
+import { IoMdStar } from "react-icons/io";
+import { CiStar } from "react-icons/ci";
 
 
 const HomePage = () => {
@@ -20,6 +22,7 @@ const HomePage = () => {
     { id: 3, title: "Shop Designs", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtim1bELlwAkWpb9df8FbQLXDFFy7Pp2hRAA&s" }
   ];
 
+  
 
   return (
     
@@ -122,6 +125,47 @@ const HomePage = () => {
     </div>
 
 
+
+    <div className="testimonial-main-container">
+        <h1>What Our Clients Say</h1>
+        <div className="testimonial-container">
+            <div className="testimonial">
+                <p>"Amazing designs that truly capture our vision. The process was smooth, and the results exceeded our expectations!"</p>
+                <div className="user-info">
+                    <img src="https://img.freepik.com/free-photo/lifestyle-scene-anime-style-with-person-doing-daily-tasks_23-2151002606.jpg" alt="User Logo" className="user-logo" />
+                    <div>
+                        <h4>Rohan Lokhande</h4>
+                        <p className="profession">Client</p>
+                    </div>
+                </div>
+                <div className="stars"><IoMdStar /><IoMdStar /><IoMdStar /><IoMdStar /><IoMdStar /></div>
+            </div>
+            <div className="testimonial">
+                <p>"Their attention to detail and creativity transformed our home. Professional and efficient throughout the entire project."</p>
+                <div className="user-info">
+                    <img src="https://t4.ftcdn.net/jpg/06/22/22/17/360_F_622221708_Gg16ZdaNSixeaIORq9MuuT4w9VWTkYw4.jpg" alt="User Logo" className="user-logo" />
+                    <div>
+                        <h4>Rushikesh Satdive</h4>
+                        <p className="profession">Cad Designer</p>
+                    </div>
+                </div>
+                <div className="stars"><IoMdStar /><IoMdStar /><IoMdStar /><IoMdStar /><IoMdStar /></div>
+            </div>
+            <div className="testimonial">
+                <p>"We’re passionate about designing homes that blend functionality with beauty, always focusing on our clients' unique needs."</p>
+                <div className="user-info">
+                    <img src="https://avatars.githubusercontent.com/u/175672643?v=4" alt="User Logo" className="user-logo" />
+                    <div>
+                        <h4>Dinesh Pawar</h4>
+                        <p className="profession">Software Engineer</p>
+                    </div>
+                </div>
+                <div className="stars"><IoMdStar /><IoMdStar /><IoMdStar /><IoMdStar /><CiStar />
+                </div>
+            </div>
+            
+        </div>
+    </div>
 
 
 
