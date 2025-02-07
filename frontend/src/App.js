@@ -1,5 +1,4 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import './App.css';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Home from './pages/Home';
@@ -9,6 +8,7 @@ import Header from './components/Layout/Header';
 import HomePage from './pages/HomePage';
 import Pricing from './pages/Pricing';
 import Footer from './components/Layout/Footer';
+import Category from './pages/Category';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -29,6 +29,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/pricing' element={<Pricing />} />
+        <Route path='/category' element={<Category />} />
         {/* Private route rendering */}
         <Route path='/home' element={<PrivateRoute element={<Home />} />} />
       </Routes>
