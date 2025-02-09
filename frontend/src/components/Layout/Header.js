@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { FaSearch, FaHeart, FaShoppingCart, FaSignOutAlt } from 'react-icons/fa';
 import "../style/Header.css";
+import { ToastContainer } from 'react-toastify';
+
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [username, setUsername] = useState("");
+  const [ setUsername] = useState("");
   const [isProfileClicked, setIsProfileClicked] = useState(false); // State to toggle logout button visibility
 
   const toggleMenu = () => {
@@ -101,6 +103,7 @@ const Header = () => {
             <span className="cart-count">(0)</span>
           </NavLink>
         </div>
+        <ToastContainer />
       </header>
     </>
   );
