@@ -161,3 +161,94 @@
     font-size: 1.2rem;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+/* Welcome message container */
+.welcome-message {
+  position: absolute;
+  left: 45px;
+  color: #333;
+  padding: 10px;
+  border-radius: 4px;
+  display: flex; /* Aligns items in a row (horizontally) */
+  align-items: center; /* Centers content vertically */
+  justify-content: flex-start; /* Aligns items to the left inside the container */
+  gap: 10px; /* Adds space between the "Welcome," text and username */
+  font-size: 14px;
+}
+
+.welcome-message p {
+  margin: 0; /* Ensures no space above or below text */
+  font-weight: 500;
+}
+
+.welcome-message .username {
+  font-weight: bold; /* Makes the username bold */
+}
+
+/* Profile icon section (just in case, in case the logout menu is conflicting) */
+.profile-icon-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #ff0000;
+  color: white;
+  font-size: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Logout button style */
+.logout-button {
+  position: absolute;
+  top: 50px; /* Positioning below the profile icon */
+  right: 0;
+  background-color: #dc3545;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #c82333;
+}
+
+/* Header layout */
+.nav-menu ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-menu ul li:last-child {
+  margin-left: auto;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .header-icons {
+    display: none; /* Hide icons on small screens */
+  }
+
+  .menu-icon {
+    display: block; /* Show the hamburger menu on small screens */
+  }
+}
