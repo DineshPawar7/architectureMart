@@ -3,7 +3,6 @@
 #### Project Overview  
 Home ArchitectureMart is a web-based platform where users can browse, purchase, and download architectural designs. The website includes authentication, a pricing section, and an integrated Razorpay payment gateway. The entire platform is fully responsive for seamless access across devices.  
 
----
 
 ### Features  
 
@@ -25,7 +24,6 @@ Fully optimized for mobile, tablet, and desktop screens
 Built with React.js for a dynamic and fast UI
 Styled using CSS & TailwindCSS (or any other CSS framework if used) 
 
----
 
 ### Tech Stack  
 Frontend: React.js, CSS (or TailwindCSS/Styled Components)
@@ -34,7 +32,6 @@ Database: MongoDB
 Authentication: JWT
 Payment Gateway: Razorpay 
 
----
 
 ### Installation & Setup  
 
@@ -63,14 +60,12 @@ JWT_SECRET=your_jwt_secret
 npm start
 ```
 
----
 
 ### Future Enhancements  
 🔹 **Admin Dashboard for Design Management**  
 🔹 **Wishlist & Favorites Feature**  
 🔹 **Advanced Search & Filtering**  
 
----
 
 💡 **Contributions & Feedback**  
 Feel free to contribute or report issues! 🚀  
