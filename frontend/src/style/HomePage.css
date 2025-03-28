@@ -3,36 +3,29 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin: 50px;
-  padding: 20px;
+  margin: 5vw;
+  padding: 2vw;
   background-color: #481E14;
-  border-radius: 30px;
+  border-radius: 3vw;
 }
-
-/* COLOR PALETTE 
-#EEE4B1 - Light Yellow
-#430A5D - Dark Purple
-#8C6A5D - Brownish
-#5F374B - Dark Pink
-*/
 
 .left-section {
   flex: 1;
-  padding: 2rem;
+  padding: 2vw;
 }
 
 .homepage-heading {
   text-transform: uppercase;
-  font-size: 6rem;
+  font-size: 6vw;
   font-family: "Archivo Black", sans-serif;
   color: #EEE4B1;
-  padding-left: 2rem;
+  padding-left: 2vw;
 }
 
 .homepage-description {
-  margin-top: 10px;
-  margin-left: 2rem;
-  font-size: 1.3rem;
+  margin-top: 1vw;
+  margin-left: 2vw;
+  font-size: 1.5vw;
   color: #8C6A5D;
 }
 
@@ -41,30 +34,84 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem;
+  margin-bottom: -40px;
 }
 
 .image {
-  width: 35rem;
-  height: 40rem;
-  border-radius: 8px;
+  width: 35vw;
+  height: 44vw;
+  max-width: 100%;
 }
 
-@media (max-width: 1302px) {
-  .image {
-      width: 30rem;
-      height: 30rem;
-  }
-
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
   .homepage-heading {
-      font-size: 5rem;
+    font-size: 5vw;
   }
 
   .homepage-description {
-      font-size: 1.1rem;
+    font-size: 1.3vw;
+  }
+
+  .image {
+    width: 32vw;
+    height: 40vw;
   }
 }
 
+@media (max-width: 768px) {
+  .homepage-container {
+    margin: 4vw;
+    padding: 3vw;
+    border-radius: 2.5vw;
+  }
+
+  .homepage-heading {
+    font-size: 50px;
+    line-height: 30px;
+  }
+  .right-section{
+    margin-bottom: -20px;
+  }
+
+  .homepage-description {
+    font-size: 1.2vw;
+  }
+
+  .image {
+    width: 250px;
+    height: 45vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .homepage-container {
+    margin: 3vw;
+    padding: 2vw;
+    border-radius: 2vw;
+  }
+
+  .homepage-heading {
+    font-size: 9vw;
+    line-height: 22px;
+  }
+
+  .homepage-description {
+    font-size: 2vw;
+    margin-top: 0;
+  }
+  .right-section{
+    margin-bottom: -9px;
+  }
+  
+  .image {
+    width: 60vw;
+    height: 65vw;
+  }
+}
+
+
+/* 
 @media (max-width: 768px) {
   .homepage-container {
       flex-direction: column;
@@ -115,7 +162,7 @@
   }
 }
 
-
+ */
 
 
 
