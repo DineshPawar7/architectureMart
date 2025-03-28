@@ -1,6 +1,6 @@
 import React from "react";
-import Aboutphoto from '../assets/about-banner.png';
-import '../components/style/HomePage.css';
+import Aboutphoto from '../assets//about-banner.png';
+import '../style/HomePage.css';
 import Homephoto from '../assets/home-photo.png';
 import { motion } from 'framer-motion';
 import { IoMdStar } from "react-icons/io";
