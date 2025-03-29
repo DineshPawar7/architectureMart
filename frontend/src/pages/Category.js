@@ -6,7 +6,7 @@ const products = [
     id: 1,
     name: '1 BHK',
     image: 'https://www.contractorbhai.com/wp-content/uploads/2012/08/space-saving-floor-plan-for-1-bhk-.jpg',
-    src: '/BuyPageOne'
+    src: '/onebhk'
   },
   {
     id: 2,

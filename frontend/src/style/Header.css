@@ -78,7 +78,6 @@
   cursor: pointer;
 }
 
-/* Icons */
 .icon {
   font-size: 1.5rem;
   cursor: pointer;
@@ -90,7 +89,6 @@
   color: #ff5733;
 }
 
-/* Login Button */
 .login-button {
   background-color: #481E14;
   border-radius: 20px;
@@ -104,7 +102,6 @@
   background-color: #f1da66;
 }
 
-/* Profile Section */
 .profile-icon-container {
   position: relative;
   display: inline-block;
@@ -122,6 +119,11 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+.profile-main {
+  display: flex;  
+  align-items: center; 
+  gap: 10px;   
 }
 
 .logout-button {
@@ -156,7 +158,6 @@
   transition: all 0.3s ease;
 }
 
-/* ✅ Responsive Design */
 @media (max-width: 1024px) {
   .header {
     padding: 15px 3%;
@@ -166,55 +167,185 @@
     gap: 20px;
   }
 }
-
-@media (max-width: 768px) {
-  .nav-menu {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    background: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-
-  .nav-menu.active {
-    display: flex;
-  }
-
-  .nav-menu ul {
-    flex-direction: column;
-    gap: 10px;
-    padding: 15px 0;
-  }
-
-  .menu-icon {
-    display: flex;
-  }
-
-  .header-icons {
+@media (min-width: 769px) {
+  .mobile-icons {
     display: none;
   }
 }
 
-@media (max-width: 480px) {
-  .logo {
-    font-size: 1.2rem;
+
+@media (max-width: 768px) {
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 75%;
+    height: 100vh;
+    background: #fff;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+    transition: left 0.3s ease-in-out;
+    z-index: 1001;
+  }
+  .header-icons {
+    display: none; 
   }
 
-  .menu-icon {
-    right: 10px;
+  .nav-menu.active {
+    left: 0;
+  }
+
+  .nav-menu ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 0;
+  }
+
+  .nav-menu ul li {
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .nav-menu ul li a {
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+  }
+
+  .nav-menu ul li a:hover {
+    color: #ff5733;
+    background: #f8f8f8;
+  }
+
+  .mobile-icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .mobile-icons .search-bar {
+    display: flex;
+    align-items: center;
+    background: none;
+    padding:5px;
+    border-radius: 20;
+    background-color: #ddd;
+  }
+
+  .mobile-icons .search-icon {
+    font-size: 20px;
+    margin-right: 8px;
+
+  }
+  .mobile-icons .search-bar input {
+    width: 70%;
+    font-size: 7px;
+    border: none;
+
+    outline: none;
+    background: transparent;
+  }
+
+  .mobile-icons .heart-icon,
+  .mobile-icons .cart-icon {
+    font-size: 24px;
+    color: #333;
+    transition: color 0.3s ease;
+  }
+
+  .mobile-icons .heart-icon:hover,
+  .mobile-icons .cart-icon:hover {
+    color: #ff5733;
+  }
+
+  .profile-icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 15px;
   }
 
   .profile-icon {
-    width: 35px;
-    height: 35px;
-    font-size: 16px;
+    width: 50px;
+    height: 50px;
+    background: #ff5733;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
+
+  .welcome-message {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .menu-icon {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1002;
+  }
+
+  .menu-icon div {
+    width: 30px;
+    height: 3px;
+    margin: 5px;
+    background-color: #333;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .menu-icon.open div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .menu-icon.open div:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-icon.open div:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+}
+
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1.4rem;
+  }
+
+  .menu-icon {
+    right: 15px;
   }
 
   .search-bar.active input {
     width: 120px;
+  }
+
+  .profile-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
   }
 }

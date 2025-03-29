@@ -57,35 +57,42 @@ const Header = () => {
         </div>
 
         <nav className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
-          <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><NavLink to="/category">Category</NavLink></li>
-            <li><NavLink to="/pricing">Pricing</NavLink></li>
-            <li><NavLink to="/signup">Register</NavLink></li>
-            {!isLoggedIn ? (
-              <li>
-                <NavLink to="/login">
-                  <button className="login-button">Log In</button>
-                </NavLink>
-              </li>
-            ) : (
-              <li className="profile-icon-container" onClick={() => setIsProfileClicked(!isProfileClicked)}>
-                <div className="profile-icon">
-                  {getInitial(loggedInUser)}
-                  <div className="welcome-message">
-                    <p>Welcome, {loggedInUser}!</p>
-                  </div>
-                </div>
-                {isProfileClicked && (
-                  <button className="logout-button" onClick={handleLogout}>
-                    <FaSignOutAlt /> Log Out
-                  </button>
-                )}
-                
-              </li>
-            )}
-          </ul>
-        </nav>
+  <ul>
+    <li><Link to="/">Home</Link></li>
+    <li><NavLink to="/category">Category</NavLink></li>
+    <li><NavLink to="/pricing">Pricing</NavLink></li>
+    <li><NavLink to="/signup">Register</NavLink></li>
+
+    <li className="mobile-icons">
+      <div className="search-bar" onClick={toggleSearch}>
+        <FaSearch className="search-icon" />
+        <input type="text" placeholder="Search..." className={isSearchActive ? 'active' : ''} />
+      </div>
+      <FaHeart className="icon heart-icon" />
+      <NavLink to="/cart">
+        <FaShoppingCart className="icon cart-icon" />
+        <span className="cart-count">(0)</span>
+      </NavLink>
+    </li>
+
+    {isLoggedIn && (
+      <li className="profile-icon-container" onClick={() => setIsProfileClicked(!isProfileClicked)}>
+        <div className="profile-icon">
+          {getInitial(loggedInUser)}
+        </div>
+        <div className="welcome-message">Welcome, {loggedInUser}!</div>
+
+        {isProfileClicked && (
+          <button className="logout-button" onClick={handleLogout}>
+            <FaSignOutAlt /> Log Out
+          </button>
+        )}
+      </li>
+    )}
+  </ul>
+</nav>
+
+
 
         <div className="header-icons">
           <div className="search-bar" onClick={toggleSearch}>
@@ -105,3 +112,23 @@ const Header = () => {
 };
 
 export default Header;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
