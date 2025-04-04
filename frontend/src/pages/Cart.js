@@ -73,13 +73,13 @@ const Cart = () => {
                 <div className="flex justify-between">
                   <button
                     onClick={() => removeFromCart(item._id)}
-                    className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
+                    className="px-4 py-2 bg-primaryColor text-white rounded hover:bg-hoverColor transition"
                   >
                     Remove
                   </button>
                   <button
                     onClick={() => handleBuy(item)}
-                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                    className="px-4 py-2 bg-hoverColor text-white rounded hover:bg-primaryColor transition"
                   >
                     Buy Now
                   </button>

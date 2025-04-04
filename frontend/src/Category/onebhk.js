@@ -21,7 +21,7 @@ const Onebhk = () => {
       product.images && product.images.length > 0
         ? `https://architecturemart.onrender.com/${product.images[0].replace(/\\/g, "/")}`
         : null;
-  
+
     const cartItem = {
       _id: product._id,
       title: product.title,
@@ -29,34 +29,55 @@ const Onebhk = () => {
       price: product.price,
       image: fullImagePath,
     };
-  
+
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     cart.push(cartItem);
     localStorage.setItem("cart", JSON.stringify(cart));
     window.dispatchEvent(new Event("storage"));
   };
-  
 
   return (
-    <div className="product-section">
-      <h1>Product Listing</h1>
-      <div className="product-list">
+    <div className="min-h-screen bg-gray-100 py-10 px-4 sm:px-6 lg:px-20">
+      <h1 className="text-3xl sm:text-4xl font-bold text-center mb-10 text-gray-800">
+        🏠 1BHK Listings
+      </h1>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {products.length === 0 ? (
-          <p>No products available</p>
+          <p className="text-center text-lg text-gray-600">No products available</p>
         ) : (
           products.map((product) => (
-            <div key={product._id} className="product-card">
+            <div
+              key={product._id}
+              className="bg-white rounded-2xl shadow-md hover:shadow-xl transform transition duration-300 hover:-translate-y-1 overflow-hidden"
+            >
               <img
                 src={`https://architecturemart.onrender.com/${product.images[0].replace(/\\/g, "/")}`}
                 alt={product.title}
+                className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
               />
-              <h2>{product.title}</h2>
-              <p>{product.description}</p>
-              <p>₹{product.price}</p>
-              <button onClick={() => navigate(`/buypage/${product._id}`, { state: { product } })}>
-                See More
-              </button>
-              <button onClick={() => addToCart(product)}>Add to Cart</button>
+              <div className="p-5 flex flex-col gap-2">
+                <h2 className="text-xl font-semibold text-gray-800">{product.title}</h2>
+                <p className="text-sm text-gray-600">{product.description.slice(0, 100)}...</p>
+                <p className="text-lg font-bold text-green-700">₹{product.price}</p>
+
+                <div className="flex justify-between gap-3 mt-4">
+                  <button
+                    onClick={() =>
+                      navigate(`/buypage/${product._id}`, { state: { product } })
+                    }
+                    className="bg-primaryColor hover:bg-hoverColor text-white px-4 py-2 rounded-lg transition duration-200"
+                  >
+                    See More
+                  </button>
+                  <button
+                    onClick={() => addToCart(product)}
+                    className="bg-hoverColor hover:bg-primaryColor text-white px-4 py-2 rounded-lg transition duration-200"
+                  >
+                    Add to Cart 🛒
+                  </button>
+                </div>
+              </div>
             </div>
           ))
         )}

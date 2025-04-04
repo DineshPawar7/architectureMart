@@ -59,7 +59,7 @@
   .buy-page-price {
     font-size: 20px;
     font-weight: 700;
-    color: #f1da66;
+    color: hoverColor;
     margin-bottom: 16px;
   }
   

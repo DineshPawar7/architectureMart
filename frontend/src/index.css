@@ -209,7 +209,7 @@ span a:hover {
 }
 
 .buy-button:hover {
-  background-color: #f1da66;
+  background-color: hoverColor;
 }
 
 @media (max-width: 1024px) {

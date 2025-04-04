@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { FaSearch, FaHeart, FaShoppingCart, FaSignOutAlt } from "react-icons/fa";
-import "../style/Header.css";
 import { ToastContainer } from "react-toastify";
 
 const Header = () => {
@@ -14,7 +13,6 @@ const Header = () => {
 
   const navigate = useNavigate();
 
-  // Fetch user login status and cart count
   useEffect(() => {
     setLoggedInUser(localStorage.getItem("loggedInUser") || "");
     setIsLoggedIn(localStorage.getItem("token") !== null);
@@ -24,69 +22,77 @@ const Header = () => {
       setCartCount(cart.length);
     };
 
-    updateCartCount(); // Initial cart update
+    updateCartCount();
     window.addEventListener("storage", updateCartCount);
-
     return () => window.removeEventListener("storage", updateCartCount);
   }, []);
 
-  // Logout function
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("loggedInUser");
     setIsLoggedIn(false);
     setLoggedInUser("");
-
-    setTimeout(() => {
-      navigate("/login");
-    }, 1000);
+    setTimeout(() => navigate("/login"), 1000);
   };
 
-  // Get the first letter of the username
   const getInitial = (name) => (name ? name.charAt(0).toUpperCase() : "");
 
   return (
     <>
-      <header className="header">
-        <div className="div-logo">
-          <Link className="logo" to="/">Architecture Mart</Link>
+      <header className="flex items-center justify-between px-5 py-3 bg-white shadow-md sticky top-0 z-[1000] font-sans">
+        <div>
+          <Link to="/" className="text-xl font-bold text-black no-underline">Architecture Mart</Link>
         </div>
 
-        <div className="menu-icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          <div></div>
-          <div></div>
-          <div></div>
+        <div className="lg:hidden flex flex-col cursor-pointer" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <div className="w-[30px] h-[3px] my-[5px] bg-[#481E14] transition-all"></div>
+          <div className="w-[30px] h-[3px] my-[5px] bg-[#481E14] transition-all"></div>
+          <div className="w-[30px] h-[3px] my-[5px] bg-[#481E14] transition-all"></div>
         </div>
 
-        <nav className={`nav-menu ${isMenuOpen ? "active" : ""}`}>
-          <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><NavLink to="/category">Category</NavLink></li>
-            <li><NavLink to="/pricing">Pricing</NavLink></li>
-            <li><NavLink to="/signup">Register</NavLink></li>
+        <nav
+          className={`${
+            isMenuOpen ? 'left-0' : '-left-full'
+          } lg:static fixed top-0 w-3/4 lg:w-auto h-screen lg:h-auto bg-white lg:bg-transparent flex flex-col lg:flex-row items-center lg:justify-center lg:gap-6 gap-4 pt-20 lg:pt-0 transition-all duration-300 z-[1001]`}
+        >
+          <ul className="flex flex-col lg:flex-row items-center gap-4 lg:gap-6 list-none p-0">
+            <li><Link to="/" className="text-gray-800 font-medium hover:text-[#481E14]">Home</Link></li>
+            <li><NavLink to="/category" className="text-gray-800 font-medium hover:text-[#481E14]">Category</NavLink></li>
+            <li><NavLink to="/pricing" className="text-gray-800 font-medium hover:text-[#481E14]">Pricing</NavLink></li>
+            <li><NavLink to="/signup" className="text-gray-800 font-medium hover:text-[#481E14]">Register</NavLink></li>
 
-            <li className="mobile-icons">
-              <div className="search-bar" onClick={() => setIsSearchActive(!isSearchActive)}>
-                <FaSearch className="search-icon" />
-                <input type="text" placeholder="Search..." className={isSearchActive ? "active" : ""} />
+            <li className="lg:hidden flex flex-col items-center gap-4 mt-5">
+              <div className="flex items-center bg-gray-200 px-3 py-1 rounded-full">
+                <FaSearch className="text-gray-700 mr-2" />
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  className="bg-transparent text-sm w-[100px] focus:outline-none"
+                />
               </div>
-              <FaHeart className="icon heart-icon" />
-              <NavLink to="/cart">
-                <FaShoppingCart className="icon cart-icon" />
-                <span className="cart-count">({cartCount})</span>
+              <FaHeart className="text-2xl text-gray-700 hover:text-[#481E14]" />
+              <NavLink to="/cart" className="relative">
+                <FaShoppingCart className="text-2xl text-gray-700 hover:text-[#481E14]" />
+                <span className="absolute -top-2 -right-3 text-sm">({cartCount})</span>
               </NavLink>
             </li>
 
             {isLoggedIn && (
-              <li className="profile-icon-container" onClick={() => setIsProfileClicked(!isProfileClicked)}>
-                <div className="profile-icon">
+              <li
+                className="relative flex flex-col items-center mt-3 lg:mt-0"
+                onClick={() => setIsProfileClicked(!isProfileClicked)}
+              >
+                <div className="w-10 h-10 bg-[#481E14] text-white text-center leading-10 rounded-full cursor-pointer">
                   {getInitial(loggedInUser)}
                 </div>
-                <div className="welcome-message">Welcome, {loggedInUser}!</div>
+                <div className="text-sm text-gray-700">Welcome, {loggedInUser}!</div>
 
                 {isProfileClicked && (
-                  <button className="logout-button" onClick={handleLogout}>
-                    <FaSignOutAlt /> Log Out
+                  <button
+                    onClick={handleLogout}
+                    className="absolute top-14 right-0 bg-[#481E14] text-white px-3 py-1 rounded shadow"
+                  >
+                    <FaSignOutAlt className="inline mr-1" /> Log Out
                   </button>
                 )}
               </li>
@@ -94,15 +100,21 @@ const Header = () => {
           </ul>
         </nav>
 
-        <div className="header-icons">
-          <div className="search-bar" onClick={() => setIsSearchActive(!isSearchActive)}>
-            <FaSearch className="search-icon" />
-            <input type="text" placeholder="Search..." className={isSearchActive ? "active" : ""} />
+        <div className="hidden lg:flex items-center gap-5">
+          <div className="flex items-center border border-gray-300 px-3 py-1 rounded-full bg-white">
+            <FaSearch className="text-gray-700 cursor-pointer" onClick={() => setIsSearchActive(!isSearchActive)} />
+            <input
+              type="text"
+              placeholder="Search..."
+              className={`${
+                isSearchActive ? 'w-36' : 'w-0'
+              } transition-all duration-300 bg-transparent text-sm focus:outline-none`}
+            />
           </div>
-          <FaHeart className="icon heart-icon" />
-          <NavLink to="/cart">
-            <FaShoppingCart className="icon cart-icon" />
-            <span className="cart-count">({cartCount})</span>
+          <FaHeart className="text-xl text-gray-700 cursor-pointer hover:text-[#481E14]" />
+          <NavLink to="/cart" className="relative">
+            <FaShoppingCart className="text-xl text-gray-700 cursor-pointer hover:text-[#481E14]" />
+            <span className="absolute -top-2 -right-3 text-sm">({cartCount})</span>
           </NavLink>
         </div>
         <ToastContainer />
