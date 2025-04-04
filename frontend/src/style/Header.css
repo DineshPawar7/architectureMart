@@ -14,7 +14,7 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  font-family: "Itim", cursive;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .logo {
@@ -24,15 +24,14 @@
   text-decoration: none;
 }
 
-.nav-menu {
-  display: flex;
-  align-items: center;
-}
 
 .nav-menu ul {
   display: flex;
   gap: 25px;
   list-style: none;
+
+  align-items: center;
+
 }
 
 .nav-menu ul li a {
@@ -43,7 +42,7 @@
 }
 
 .nav-menu ul li a:hover {
-  color: #ff5733;
+  color: #481E14;
 }
 
 .header-icons {
@@ -86,7 +85,7 @@
 }
 
 .icon:hover {
-  color: #ff5733;
+  color:#f1da66;
 }
 
 .login-button {
@@ -104,14 +103,19 @@
 
 .profile-icon-container {
   position: relative;
-  display: inline-block;
+  display: flex;
   cursor: pointer;
+  align-items: center;
+  
+    gap: 10px;
+  
+  
 }
 
 .profile-icon {
   width: 40px;
   height: 40px;
-  background-color: #ff5733;
+  background-color: #481E14;
   color: white;
   font-size: 18px;
   border-radius: 50%;
@@ -130,7 +134,7 @@
   position: absolute;
   top: 50px;
   right: 0;
-  background-color: #dc3545;
+  background-color: #481E14;
   color: white;
   padding: 6px 12px;
   border: none;
@@ -154,7 +158,7 @@
   width: 30px;
   height: 3px;
   margin: 5px;
-  background-color: #333;
+  background-color: #481E14;
   transition: all 0.3s ease;
 }
 
@@ -221,7 +225,7 @@
   }
 
   .nav-menu ul li a:hover {
-    color: #ff5733;
+    color: #f1da66;
     background: #f8f8f8;
   }
 
@@ -265,7 +269,7 @@
 
   .mobile-icons .heart-icon:hover,
   .mobile-icons .cart-icon:hover {
-    color: #ff5733;
+    color: #f1da66;
   }
 
   .profile-icon-container {

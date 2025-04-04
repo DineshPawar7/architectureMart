@@ -12,12 +12,12 @@
 .left-section {
   flex: 1;
   padding: 2vw;
-}
+} 
 
 .homepage-heading {
   text-transform: uppercase;
   font-size: 6vw;
-  font-family: "Archivo Black", sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   color: #EEE4B1;
   padding-left: 2vw;
 }
@@ -110,10 +110,6 @@
   }
 }
 
-:root {
-  --primary-color: hsl(236, 57%, 28%);
-  --highlight-gradient: linear-gradient(90deg, #e91e63, #ffc107);
-}
 
 .section {
   padding: 60px 20px;
@@ -135,7 +131,7 @@
 }
 
 .section-title {
-  color: var(--primary-color);
+  color: #f1da66;
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 20px;
@@ -188,7 +184,7 @@
 }
 
 .stats-title {
-  color: var(--primary-color);
+  color: #f1da66;
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 10px;
@@ -475,7 +471,7 @@
 }
 
 .buy-button {
-  background-color: var(--primary-color);
+  background-color: #481E14;
   color: #fff;
   padding: 10px 15px;
   border: none;
@@ -485,7 +481,7 @@
 }
 
 .buy-button:hover {
-  background-color: var(--secondary-color);
+  background-color: #481E14;
 }
 
 @media (max-width: 1024px) {

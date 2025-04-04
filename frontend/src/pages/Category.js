@@ -12,13 +12,13 @@ const products = [
     id: 2,
     name: '2 BHK',
     image: 'https://imagecdn.99acres.com//microsite/wp-content/blogs.dir/6161/files/2023/12/2BHK-flat-design-plan_-3D-floor-plan-for-2BHK-with-large-area_pinterest_Behance.jpg',
-    src: '/2bhk'
+    src: '/twobhk'
   },
   {
     id: 3,
     name: '3 BHK',
     image: 'https://housing.com/news/wp-content/uploads/2022/12/3D-Floor-Plans-scaled.jpg',
-    src: '/3bhk'
+    src: '/threebhk'
   },
   {
     id: 4,

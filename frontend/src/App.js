@@ -16,6 +16,7 @@ import Commontoall from './Category/commontoall';
 import BuyPage from './buypage/BuyPage';
 import Product from './admin/Product';
 import AdminPanel from './admin/AdminPanel'
+import Cart from './pages/Cart';
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
         <Route path="/admin" element={<AdminPanel />} />
         <Route path="/" element={<Product />} />
         <Route path='/home' element={<PrivateRoute element={<Home />} />} />
+        <Route path='/cart' element={<PrivateRoute element={<Cart />} />} />
       </Routes>
 
       <Footer />
@@ -53,3 +55,18 @@ function App() {
   );
 }
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

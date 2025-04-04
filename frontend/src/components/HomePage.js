@@ -9,18 +9,14 @@ import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
   const services = [
-    { id: 1, title: "Home Designs", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3i1jpJLXqxV-RpdvAe0yT2l-NdXgpq8UBCQ&s" },
-    { id: 2, title: "Office Designs", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgFFWRZHjNJJoDAJtSWxampNoRbs1vg9Rf9A&s" },
-    { id: 3, title: "Shop Designs", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtim1bELlwAkWpb9df8FbQLXDFFy7Pp2hRAA&s" }
+    { id: 1, title: "Home Designs", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3i1jpJLXqxV-RpdvAe0yT2l-NdXgpq8UBCQ&s", src:'/category' },
+    { id: 2, title: "Office Designs", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgFFWRZHjNJJoDAJtSWxampNoRbs1vg9Rf9A&s", src:'/category' },
+    { id: 3, title: "Shop Designs", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtim1bELlwAkWpb9df8FbQLXDFFy7Pp2hRAA&s", src:'/category' }
   ];
 
   const navigate = useNavigate();
 
-  const handleBuyNow = (productId) => {
-    localStorage.setItem('redirectProductId', productId);
 
-    navigate('/login');
-  }
 
   return (
     <div id="homepage">
@@ -91,11 +87,11 @@ const HomePage = () => {
               <img src={service.image} alt={service.title} className="service-image" />
               <h3 className="service-title">{service.title}</h3>
               <button
-                className="buy-button"
-                onClick={() => handleBuyNow(service.id)}
-              >
-                Buy Now
-              </button>
+      className="buy-button"
+      onClick={() => navigate(service.src)} // Ye React Router ke hisaab se navigate karega
+    >
+      More Designs
+    </button>
             </motion.div>
           ))}
         </div>

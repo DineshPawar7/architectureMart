@@ -65,17 +65,58 @@ const AdminPanel = () => {
 
   return (
     <div>
-      <h2>Admin Panel - Upload Product</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} required />
-        <textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} required />
-        <input type="number" placeholder="Price" value={price} onChange={(e) => setPrice(e.target.value)} required />
+      <div className="max-w-xl mx-auto p-6 bg-white shadow-lg rounded-xl mt-10">
+  <h2 className="text-2xl font-bold mb-4 text-center">Admin Panel - Upload Product</h2>
+  <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+    <input
+      type="text"
+      placeholder="Title"
+      value={title}
+      onChange={(e) => setTitle(e.target.value)}
+      className="border p-2 rounded"
+      required
+    />
+    <textarea
+      placeholder="Description"
+      value={description}
+      onChange={(e) => setDescription(e.target.value)}
+      className="border p-2 rounded"
+      required
+    />
+    <input
+      type="number"
+      placeholder="Price"
+      value={price}
+      onChange={(e) => setPrice(e.target.value)}
+      className="border p-2 rounded"
+      required
+    />
+    <input
+      id="imageInput"
+      type="file"
+      multiple
+      onChange={handleImageChange}
+      accept="image/*"
+      className="border p-2 rounded"
+      required
+    />
+    <input
+      id="pdfInput"
+      type="file"
+      onChange={handlePdfChange}
+      accept="application/pdf"
+      className="border p-2 rounded"
+      required
+    />
+    <button
+      type="submit"
+      className="bg-primaryColor text-white py-2 rounded hover:bg-hoverColor transition duration-200"
+    >
+      Upload
+    </button>
+  </form>
+</div>
 
-        <input type="file" multiple onChange={handleImageChange} accept="image/*" required />
-        <input type="file" onChange={handlePdfChange} accept="application/pdf" required />
-
-        <button type="submit">Upload</button>
-      </form>
     </div>
   );
 };
