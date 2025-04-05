@@ -25,7 +25,7 @@ const BuyPage = () => {
 
   const handlePayment = async () => {
     if (!product || !product.price) return;
-
+  
     try {
       const { data } = await axios.post(`${API_BASE_URL}/api/cashfree/order`, {
         amount: product.price,
@@ -35,14 +35,27 @@ const BuyPage = () => {
           phone: "9876543210",
         },
       });
-
+  
       if (data.payment_link) {
         window.location.href = data.payment_link;
+  
+        const pdfDownloadUrl = `${API_BASE_URL}/api/products/download-pdf/${product._id}`;
+        
+        fetch(pdfDownloadUrl)
+          .then((response) => response.blob())
+          .then((blob) => {
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "design.pdf";
+            link.click();
+          })
+          .catch((err) => console.error("Error downloading PDF", err));
       }
     } catch (error) {
       alert("Payment failed. Please try again.");
     }
   };
+  
 
   if (!product) return <h1>Loading...</h1>;
 

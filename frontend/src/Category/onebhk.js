@@ -39,8 +39,9 @@ const Onebhk = () => {
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4 sm:px-6 lg:px-20">
       <h1 className="text-3xl sm:text-4xl font-bold text-center mb-10 text-gray-800">
-        🏠 1BHK Listings
+        LATEST 1BHK LISTINGS
       </h1>
+
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {products.length === 0 ? (

@@ -6,6 +6,11 @@ module.exports = {
       colors: {
         primaryColor: '#481E14',
         hoverColor: '#002673',
+        
+      },
+      color: {
+        'brown-800': '#481E14',
+        'brown-700': '#6A2E1D',
       },
       keyframes: {
         waveAnim: {

@@ -36,6 +36,24 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch products" });
   }
 });
+router.get("/download-pdf/:productId", async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.productId);
+    if (!product || !product.pdf) {
+      return res.status(404).json({ message: "PDF not found" });
+    }
+
+    const filePath = path.join(__dirname, "../uploads", product.pdf); 
+    if (fs.existsSync(filePath)) {
+      res.download(filePath, "invoice.pdf"); 
+    } else {
+      res.status(404).json({ message: "File not found on server" });
+    }
+  } catch (error) {
+    console.error("Error fetching PDF", error);
+    res.status(500).json({ message: "Failed to download PDF" });
+  }
+});
 
 
 
