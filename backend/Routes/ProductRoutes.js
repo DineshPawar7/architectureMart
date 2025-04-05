@@ -93,7 +93,8 @@ router.get("/", async (req, res) => {
          images: req.files["images"] ? req.files["images"].map(file => `uploads/${file.filename}`) : [],
 
  
-        images: req.files["images"] ? req.files["images"].map((file) => file.path) : [],
+         images: req.files["images"] ? req.files["images"].map((file) => `https://architecturemart.onrender.com/uploads/${file.filename}`) : [],
+
          pdf: req.files["pdf"] ? req.files["pdf"][0].path : null,
       });
 

@@ -20,7 +20,6 @@ app.use("/api/products", productRoutes);
 app.use("/api/cashfree", cashfreeRoutes);
 app.use("/api/webhooks", webhookRoutes);
 app.use("/auth", authRoutes);
-app.use("/uploads", express.static("uploads"));
 
 
 const mongo_url = process.env.MONGO_CONN;
