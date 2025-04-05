@@ -4,7 +4,6 @@ import { ToastContainer } from 'react-toastify';
 import { handleError, handleSuccess } from '../utils';
 import '../components/Layout';
 
-
 function Signup() {
 
     const [signupInfo, setSignupInfo] = useState({
@@ -14,23 +13,22 @@ function Signup() {
     })
 
     const navigate = useNavigate();
-    const handleChange = (e) => {
-    const { name, value } = e.target;
-    console.log(name, value);
-    const copySignupInfo = { ...signupInfo };
-    copySignupInfo[name] = value;
-    setSignupInfo(copySignupInfo);
-};
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        const copySignupInfo = { ...signupInfo };
+        copySignupInfo[name] = value;
+        setSignupInfo(copySignupInfo);
+    };
 
     const handleSignup = async (e) => {
         e.preventDefault();
         const { name, email, password } = signupInfo;
         if (!name || !email || !password) {
-            return handleError('name, email and password are required')
+            return handleError('Name, email, and password are required');
         }
         try {
-             const url = `https://architecturemart.onrender.com/auth/signup`;
+            const url = `https://architecturemart.onrender.com/auth/signup`;
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
@@ -51,56 +49,69 @@ function Signup() {
             } else if (!success) {
                 handleError(message);
             }
-            console.log(result);
         } catch (err) {
             handleError(err);
         }
     }
+
     return (
         <>
-        <div className='container'>
-            <h1>Register</h1>
-            <form onSubmit={handleSignup}>
-                <div>
-                    <label htmlFor='name'>Name</label>
-                    <input
-                        onChange={handleChange}
-                        type='text'
-                        name='name'
-                        autoFocus
-                        placeholder='Enter your name...'
-                        value={signupInfo.name}
-                    />
+            <div className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-lg">
+                    <h1 className="text-4xl font-bold text-center text-primaryColor">Register</h1>
+                    <form onSubmit={handleSignup} className="space-y-6">
+                        <div>
+                            <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+                            <input
+                                onChange={handleChange}
+                                type="text"
+                                name="name"
+                                autoFocus
+                                placeholder="Enter your name..."
+                                value={signupInfo.name}
+                                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primaryColor focus:border-primaryColor"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                            <input
+                                onChange={handleChange}
+                                type="email"
+                                name="email"
+                                placeholder="Enter your email..."
+                                value={signupInfo.email}
+                                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primaryColor focus:border-primaryColor"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+                            <input
+                                onChange={handleChange}
+                                type="password"
+                                name="password"
+                                placeholder="Enter your password..."
+                                value={signupInfo.password}
+                                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primaryColor focus:border-primaryColor"
+                            />
+                        </div>
+                        <div>
+                            <button
+                                type="submit"
+                                className="w-full py-3 bg-primaryColor text-white font-semibold rounded-md hover:bg-hoverColor focus:outline-none focus:ring-2 focus:ring-primaryColor focus:ring-opacity-50 transition"
+                            >
+                                Signup
+                            </button>
+                        </div>
+                        <div className="text-sm text-center">
+                            <span>Already have an account? </span>
+                            <Link to="/login" className="text-primaryColor font-medium hover:text-hoverColor">Login</Link>
+                        </div>
+                    </form>
+                    <ToastContainer />
                 </div>
-                <div>
-                    <label htmlFor='email'>Email</label>
-                    <input
-                        onChange={handleChange}
-                        type='email'
-                        name='email'
-                        placeholder='Enter your email...'
-                        value={signupInfo.email}
-                    />
-                </div>
-                <div>
-                    <label htmlFor='password'>Password</label>
-                    <input
-                        onChange={handleChange}
-                        type='password'
-                        name='password'
-                        placeholder='Enter your password...'
-                        value={signupInfo.password}
-                    />
-                </div>
-                <button type='submit'>Signup</button>
-                <span>Already have an account ?
-                    <Link to="/login">Login</Link>
-                </span>
-            </form>
-            <ToastContainer />
-        </div>
+            </div>
         </>
-    )
+    );
 }
 
-export default Signup
+export default Signup;

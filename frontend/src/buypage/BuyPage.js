@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
-import "./buypage.css";
 
 const API_BASE_URL = "https://architecturemart.onrender.com";
 
@@ -13,19 +12,28 @@ const BuyPage = () => {
   const { id } = useParams();
   const location = useLocation();
   const [product, setProduct] = useState(location.state?.product || null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!product) {
       axios
         .get(`${API_BASE_URL}/api/products/${id}`)
-        .then((res) => setProduct(res.data))
-        .catch(() => {});
+        .then((res) => {
+          setProduct(res.data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error("Error fetching product details:", err);
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
     }
   }, [id, product]);
 
   const handlePayment = async () => {
     if (!product || !product.price) return;
-  
+
     try {
       const { data } = await axios.post(`${API_BASE_URL}/api/cashfree/order`, {
         amount: product.price,
@@ -35,12 +43,12 @@ const BuyPage = () => {
           phone: "9876543210",
         },
       });
-  
+
       if (data.payment_link) {
         window.location.href = data.payment_link;
-  
+
         const pdfDownloadUrl = `${API_BASE_URL}/api/products/download-pdf/${product._id}`;
-        
+
         fetch(pdfDownloadUrl)
           .then((response) => response.blob())
           .then((blob) => {
@@ -55,28 +63,45 @@ const BuyPage = () => {
       alert("Payment failed. Please try again.");
     }
   };
-  
 
-  if (!product) return <h1>Loading...</h1>;
+  if (loading) return <h1>Loading...</h1>;
+
+  if (!product) return <h1>Product not found</h1>;
 
   return (
-    <div className="buy-page-container">
-      <div className="buy-page-product-card">
-        <div className="buy-page-image-slider">
-          <Swiper navigation={true} modules={[Navigation]} className="buy-page-product-images">
-            {product.images.map((img, index) => (
-              <SwiperSlide key={index}>
-                <img src={`${API_BASE_URL}/${img}`} alt="Product" className="buy-page-image" />
-              </SwiperSlide>
-            ))}
+    <div className="flex justify-center items-center min-h-screen px-4 bg-gray-50">
+      <div className="w-full max-w-xl bg-white shadow-lg rounded-lg overflow-hidden p-4 text-center">
+        <div className="w-full h-96 relative mb-4 overflow-hidden rounded-lg">
+          <Swiper
+            navigation={true}
+            modules={[Navigation]}
+            className="w-full h-full"
+          >
+            {product.images.map((img, index) => {
+              const imageUrl = img.startsWith("https://")
+                ? img
+                : `${API_BASE_URL}/${img.replace(/\\/g, "/")}`;
+              return (
+                <SwiperSlide key={index}>
+                  <img
+                    src={imageUrl}
+                    alt={`Product ${index}`}
+                    className="w-full h-full object-cover"
+                  />
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
         </div>
 
-        <h1 className="buy-page-product-name">{product.title}</h1>
-        <p className="buy-page-product-description">{product.description}</p>
-        <p className="buy-page-price">₹{product.price}</p>
+        <h1 className="text-2xl font-bold text-gray-800 mb-4">{product.title}</h1>
+        <p className="text-sm text-gray-600 mb-6">{product.description}</p>
+        <p className="text-lg font-bold text-gray-800 mb-6">₹{product.price}</p>
 
-        <button className="buy-page-buy-button" onClick={handlePayment}>
+        <button
+          className="w-full py-4 text-xl font-semibold text-white bg-[#481E14] rounded-lg hover:bg-[#3e180f] transition-colors duration-300"
+          onClick={handlePayment}
+        >
           Buy Now
         </button>
       </div>

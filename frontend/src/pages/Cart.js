@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const API_BASE_URL = "https://architecturemart.onrender.com";
+
 const Cart = () => {
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
@@ -14,7 +16,7 @@ const Cart = () => {
 
   useEffect(() => {
     axios
-      .get("https://architecturemart.onrender.com/api/products")
+      .get(`${API_BASE_URL}/api/products`)
       .then((res) => {
         setProducts(res.data);
       })
@@ -29,13 +31,18 @@ const Cart = () => {
 
   const handleBuy = (item) => {
     localStorage.setItem("buyItem", JSON.stringify(item));
-    navigate("/buyone");
+  
+    navigate(`/buypage/${item._id}`, { state: { product: item } });
   };
 
   const getImageForItem = (item) => {
     const matchedProduct = products.find((p) => p._id === item._id);
     if (matchedProduct && matchedProduct.images?.length > 0) {
-      return `https://architecturemart.onrender.com/${matchedProduct.images[0].replace(/\\/g, "/")}`;
+      const imageUrl = matchedProduct.images[0];
+      if (imageUrl.startsWith('http')) {
+        return imageUrl; 
+      }
+      return `${API_BASE_URL}/${imageUrl.replace(/\\/g, "/")}`;
     }
     return "https://via.placeholder.com/300x200?text=No+Image";
   };

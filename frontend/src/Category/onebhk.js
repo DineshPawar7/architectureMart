@@ -2,25 +2,26 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const API_BASE_URL = "https://architecturemart.onrender.com"; 
+
 const Onebhk = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get("https://architecturemart.onrender.com/api/products")
+      .get(`${API_BASE_URL}/api/products`) 
       .then((res) => {
         console.log("Fetched Products:", res.data);
         setProducts(res.data);
       })
-      .catch((err) => console.error("Error fetching products:", err));
+      .catch((err) => console.error("Error fetching products:", err)); // Error handling
   }, []);
 
   const addToCart = (product) => {
-    const fullImagePath =
-      product.images && product.images.length > 0
-        ? product.images[0]
-        : null;
+    const fullImagePath = product.images && product.images.length > 0
+      ? product.images[0]
+      : null;
 
     const cartItem = {
       _id: product._id,
@@ -36,6 +37,16 @@ const Onebhk = () => {
     window.dispatchEvent(new Event("storage"));
   };
 
+  const getImageUrl = (imagePath) => {
+    if (imagePath) {
+      if (imagePath.startsWith("https://") || imagePath.startsWith("http://")) {
+        return imagePath;
+      }
+      return `${API_BASE_URL}/${imagePath.replace(/\\/g, "/")}`;
+    }
+    return "https://via.placeholder.com/150";
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4 sm:px-6 lg:px-20">
       <h1 className="text-3xl sm:text-4xl font-bold text-center mb-10 text-gray-800">
@@ -47,7 +58,7 @@ const Onebhk = () => {
           <p className="text-center text-lg text-gray-600">No products available</p>
         ) : (
           products.map((product) => {
-            const imageUrl = product.images[0];
+            const imageUrl = getImageUrl(product.images[0]); 
 
             return (
               <div

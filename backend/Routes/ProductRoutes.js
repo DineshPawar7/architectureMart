@@ -74,6 +74,28 @@ router.get("/", async (req, res) => {
   }
 });
 
+
+router.delete("/:id", async (req, res) => {
+  const productId = req.params.id;
+
+  if (!mongoose.Types.ObjectId.isValid(productId)) {
+    return res.status(400).json({ message: "Invalid product ID" });
+  }
+
+  try {
+    const product = await Product.findByIdAndDelete(productId);
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    res.json({ message: "Product deleted successfully!" });
+  } catch (err) {
+    console.error("Error deleting product:", err);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+ 
  router.post(
   "/upload",
   upload.fields([{ name: "images", maxCount: 3 }, { name: "pdf", maxCount: 1 }]),
@@ -106,6 +128,8 @@ router.get("/", async (req, res) => {
       res.json({ message: "Product uploaded successfully!", product: newProduct });
     } 
   }
+
+  
 );
 
 module.exports = router;

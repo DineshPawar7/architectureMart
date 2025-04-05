@@ -60,14 +60,17 @@ function Category() {
   }
 
   return (
-    <div className="product-section">
-      <h1 className="product-section-title">Product Listing</h1>
-      <div className="product-list">
+    <div className="w-full max-w-7xl mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Product Listing</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 animate-fadeIn">
         {products.map((product) => (
-          <div key={product.id} className="product-card">
-            <img src={product.image} alt={product.name} />
-            <h2>{product.name}</h2>
-            <button className="buy-button" onClick={() => handleBuyNow(product.src)}>
+          <div key={product.id} className="bg-white p-4 rounded-lg shadow-lg text-center transform transition-all hover:translate-y-[-10px]">
+            <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded-lg mb-4" />
+            <h2 className="text-xl font-semibold text-gray-800 mb-4">{product.name}</h2>
+            <button
+              className="px-6 py-2 bg-[#481E14] text-white font-semibold rounded-lg hover:bg-[#3e180f] transition-colors duration-300"
+              onClick={() => handleBuyNow(product.src)}
+            >
               See More
             </button>
           </div>
