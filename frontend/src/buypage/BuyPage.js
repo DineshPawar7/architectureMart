@@ -33,37 +33,31 @@ const BuyPage = () => {
 
   const handlePayment = async () => {
     if (!product || !product.price) return;
-
+  
+    const loggedInUser = JSON.parse(localStorage.getItem("user"));
+    const customerEmail = loggedInUser?.email;
+  
+    if (!customerEmail) {
+      alert("User email not found. Please log in.");
+      return;
+    }
+  
     try {
       const { data } = await axios.post(`${API_BASE_URL}/api/cashfree/order`, {
         amount: product.price,
-        customer: {
-          id: "12345",
-          email: "customer@example.com",
-          phone: "9876543210",
-        },
+        productId: product._id,
+        email: customerEmail,
       });
-
+  
       if (data.payment_link) {
         window.location.href = data.payment_link;
-
-        const pdfDownloadUrl = `${API_BASE_URL}/api/products/download-pdf/${product._id}`;
-
-        fetch(pdfDownloadUrl)
-          .then((response) => response.blob())
-          .then((blob) => {
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = "design.pdf";
-            link.click();
-          })
-          .catch((err) => console.error("Error downloading PDF", err));
       }
     } catch (error) {
       alert("Payment failed. Please try again.");
     }
   };
-
+  
+  
   if (loading) return <h1>Loading...</h1>;
 
   if (!product) return <h1>Product not found</h1>;

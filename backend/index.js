@@ -10,6 +10,7 @@ const cashfreeRoutes = require("./Routes/CashfreeRoutes");
 const webhookRoutes = require("./Routes/WebhookRoutes");
 const productRoutes = require("./Routes/ProductRoutes");
 const authRoutes = require("./Routes/AuthRouter");
+const paymentRoute = require("./Routes/Payment");
 
 
 app.use(cors());
@@ -20,6 +21,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/cashfree", cashfreeRoutes);
 app.use("/api/webhooks", webhookRoutes);
 app.use("/auth", authRoutes);
+app.use("/api", paymentRoute);
 
 
 const mongo_url = process.env.MONGO_CONN;
