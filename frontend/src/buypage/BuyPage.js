@@ -1,3 +1,12 @@
+
+
+
+
+
+
+
+
+
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
@@ -6,7 +15,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 
-const API_BASE_URL = "https://architecturemart.onrender.com";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const BuyPage = () => {
   const { id } = useParams();
@@ -32,16 +41,16 @@ const BuyPage = () => {
   }, [id, product]);
 
   const handlePayment = async () => {
-    if (!product || !product.price) return;
-  
+    // Get user from localStorage
     const loggedInUser = JSON.parse(localStorage.getItem("user"));
-    const customerEmail = loggedInUser?.email;
   
-    if (!customerEmail) {
-      alert("User email not found. Please log in.");
+    // If no user is logged in, show an alert and return early
+    if (!loggedInUser || !loggedInUser.email) {
+      alert("User not logged in. Please log in to proceed with the payment.");
       return;
     }
   
+    const customerEmail = loggedInUser.email;
     try {
       const { data } = await axios.post(`${API_BASE_URL}/api/cashfree/order`, {
         amount: product.price,
@@ -56,6 +65,7 @@ const BuyPage = () => {
       alert("Payment failed. Please try again.");
     }
   };
+  
   
   
   if (loading) return <h1>Loading...</h1>;

@@ -4,6 +4,8 @@ import { ToastContainer } from 'react-toastify';
 import { handleError, handleSuccess } from '../utils';
 import '../components/Layout';
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 function Signup() {
 
     const [signupInfo, setSignupInfo] = useState({
@@ -28,7 +30,7 @@ function Signup() {
             return handleError('Name, email, and password are required');
         }
         try {
-            const url = `https://architecturemart.onrender.com/auth/signup`;
+            const url = `${API_BASE_URL}/auth/signup`;
             const response = await fetch(url, {
                 method: "POST",
                 headers: {

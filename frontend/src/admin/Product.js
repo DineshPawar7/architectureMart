@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
+
 const Products = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios.get("https://architecturemart.onrender.com/api/products")
+    axios.get(`${API_BASE_URL}/api/products`)
       .then((res) => setProducts(res.data))
       .catch((err) => console.error("Error fetching products:", err));
   }, []);
@@ -20,7 +23,7 @@ const Products = () => {
     <p>₹{product.price}</p>
     
     {product.images.map((image, index) => (
-  <img key={index} src={`https://architecturemart.onrender.com${image.replace(/\\/g, "/")}`} alt="Product" width="200" />
+  <img key={index} src={`${API_BASE_URL}${image.replace(/\\/g, "/")}`} alt="Product" width="200" />
 
 ))}
 

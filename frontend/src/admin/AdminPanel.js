@@ -16,6 +16,8 @@ const AdminPanel = () => {
 
   const ADMIN_PASSWORD = process.env.REACT_APP_ADMIN_PASSWORD;
 
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 const handlePasswordSubmit = (e) => {
   e.preventDefault();
 
@@ -36,7 +38,7 @@ const handlePasswordSubmit = (e) => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("https://architecturemart.onrender.com/api/products");
+      const response = await axios.get(`${API_BASE_URL}/api/products`);
       setProducts(response.data);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -76,9 +78,11 @@ const handlePasswordSubmit = (e) => {
     formData.append("pdf", pdf);
 
     try {
-      const response = await axios.post("https://architecturemart.onrender.com/api/products/upload", formData, {
+      const response = await axios.post(`${API_BASE_URL}/api/products/upload`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
+
+      console.log("Upload successful:", response.data);
 
       alert("Product uploaded successfully!");
       fetchProducts();
@@ -102,7 +106,7 @@ const handlePasswordSubmit = (e) => {
     console.log("Deleting product with ID:", id);
 
     try {
-      const response = await axios.delete(`https://architecturemart.onrender.com/api/products/${id}`);
+      const response = await axios.delete(`${API_BASE_URL}/api/products/${id}`);
 
       console.log(response.data);
 

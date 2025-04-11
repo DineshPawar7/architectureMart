@@ -6,6 +6,7 @@ const Product = require("../Models/Product");
 
 const router = express.Router();
 const uploadDir = path.join(__dirname, "../uploads");
+const BASE_URL = process.env.BASE_URL;
 
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
@@ -27,7 +28,7 @@ router.get("/", async (req, res) => {
 
     const productsWithFullImages = products.map(product => ({
       ...product._doc,
-      images: product.images.map(imgPath => `https://architecturemart.onrender.com/${imgPath}`),
+      images: product.images.map(imgPath => `${BASE_URL}/${imgPath}`),
     }));
 
     res.json(productsWithFullImages);

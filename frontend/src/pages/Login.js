@@ -3,6 +3,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
 import { handleError, handleSuccess } from '../utils';
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
+
 function Login() {
 
     const [loginInfo, setLoginInfo] = useState({
@@ -26,7 +29,7 @@ function Login() {
             return handleError('Email and password are required')
         }
         try {
-            const url = `https://architecturemart.onrender.com/auth/login`;
+            const url = `${API_BASE_URL}/auth/login`;
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
