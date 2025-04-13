@@ -7,3 +7,6 @@ const productSchema = new mongoose.Schema({
   pdf: { type: String }
 });
 module.exports = mongoose.model("Product", productSchema);
+
+
+

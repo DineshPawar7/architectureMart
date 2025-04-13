@@ -28,6 +28,7 @@ function Login() {
         if (!email || !password) {
             return handleError('Email and password are required')
         }
+        
         try {
             const url = `${API_BASE_URL}/auth/login`;
             const response = await fetch(url, {
@@ -38,14 +39,21 @@ function Login() {
                 body: JSON.stringify(loginInfo)
             });
             const result = await response.json();
-            const { success, message, jwtToken, name, error } = result;
+            const { success, message, jwtToken, name, email, error } = result;
             if (success) {
+                console.log("Login Success:", result); // 👈 Check this in browser console
+                console.log("Email to store:", email); // 👈 Make sure email exists
+              
                 handleSuccess(message);
                 localStorage.setItem('token', jwtToken);
-                localStorage.setItem('loggedInUser', name);
+                localStorage.setItem('user', JSON.stringify({ email, name }));
+              
                 setTimeout(() => {
-                    navigate('/home')
-                }, 1000)
+                  navigate('/home');
+                }, 1000);
+              
+              
+            
             } else if (error) {
                 const details = error?.details[0].message;
                 handleError(details);

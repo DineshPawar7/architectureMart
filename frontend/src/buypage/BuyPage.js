@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
@@ -15,7 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const API_BASE_URL = "https://architecturemart.onrender.com";
 
 const BuyPage = () => {
   const { id } = useParams();
@@ -41,33 +32,38 @@ const BuyPage = () => {
   }, [id, product]);
 
   const handlePayment = async () => {
-    // Get user from localStorage
-    const loggedInUser = JSON.parse(localStorage.getItem("user"));
-  
-    // If no user is logged in, show an alert and return early
-    if (!loggedInUser || !loggedInUser.email) {
-      alert("User not logged in. Please log in to proceed with the payment.");
-      return;
-    }
-  
-    const customerEmail = loggedInUser.email;
+    if (!product || !product.price) return;
+
     try {
       const { data } = await axios.post(`${API_BASE_URL}/api/cashfree/order`, {
         amount: product.price,
-        productId: product._id,
-        email: customerEmail,
+        customer: {
+          id: "12345",
+          email: "customer@example.com",
+          phone: "9876543210",
+        },
       });
-  
+
       if (data.payment_link) {
         window.location.href = data.payment_link;
+
+        const pdfDownloadUrl = `${API_BASE_URL}/api/products/download-pdf/${product._id}`;
+
+        fetch(pdfDownloadUrl)
+          .then((response) => response.blob())
+          .then((blob) => {
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "design.pdf";
+            link.click();
+          })
+          .catch((err) => console.error("Error downloading PDF", err));
       }
     } catch (error) {
       alert("Payment failed. Please try again.");
     }
   };
-  
-  
-  
+
   if (loading) return <h1>Loading...</h1>;
 
   if (!product) return <h1>Product not found</h1>;
